@@ -76,11 +76,13 @@ function showTime(selection, duration) {
         } else {
             durationText = msToTime(duration);
         }
+
+        var content = duration + 'ms = ' + durationText;
+        console.log(content);
+        showDialog(content);
     }
 
-    var content = duration + 'ms = ' + durationText;
-    console.log(content);
-    showDialog(content);
+
 }
 
 
@@ -89,7 +91,7 @@ window.addEventListener('load', function () {
         var selection = getSelected();
         if (selection && numReg.test(selection.selectedText)) {
             var duration = parseInt(selection.selectedText);
-            
+
             if (!isNaN(duration)) {
                 showTime(selection.selected, duration);
             }

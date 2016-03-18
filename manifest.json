@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Milli-Zeit",
     "description": "Converts timestamps and durations in milliseconds to human readable format.",
-    "version": "0.9",
+    "version": "0.9.1",
     "content_scripts": [{
             "all_frames": true,
             "js": ["content_script.js"],
