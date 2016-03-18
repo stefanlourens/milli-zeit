@@ -11,18 +11,26 @@ function msToTime(millseconds) {
 
     var timeString = '';
 
-    if (days > 0)
+    if (days > 0) {
         timeString += (days > 1) ? (days + " days ") : (days + " day ");
-    if (hours > 0)
+    }
+
+    if (hours > 0) {
         timeString += (hours > 1) ? (hours + " hours ") : (hours + " hour ");
-    if (minutes > 0)
+    }
+
+    if (minutes > 0) {
         timeString += (minutes > 1) ? (minutes + " minutes ") : (minutes + " minute ");
-    if (secondsLeft > 0)
+    }
+
+    if (secondsLeft > 0) {
         timeString += (secondsLeft > 1) ? (secondsLeft + " seconds ") : (secondsLeft + " second ");
+    }
 
     if (days <= 0 && hours <= 0 && minutes <= 0 && secondsLeft <= 0) {
         timeString = "less than a second";
     }
+
     return timeString;
 }
 
@@ -52,7 +60,7 @@ function showDialog(content) {
         dialog.id = dialogId;
         dialog.style.cssText = 'color-black; font-weight: bold; background-color: #EEE;'
                 + 'position:fixed; border:1px solid dark-grey; border-radius: 5px; padding:5px;'
-                + 'bottom:0; right:0; ';
+                + 'bottom:0; right:0; font-family:Helvetica,Arial,sans-serif; font-size: 10pt;';
         document.body.appendChild(dialog);
     }
 
@@ -62,13 +70,15 @@ function showDialog(content) {
 function showTime(selection, duration) {
     var durationText = null;
 
-    if (duration > aWeek) {
-        durationText = (new Date(duration)).toString();
-    } else {
-        durationText = msToTime(duration);
+    if (duration > 0) {
+        if (duration > aWeek) {
+            durationText = (new Date(duration)).toString();
+        } else {
+            durationText = msToTime(duration);
+        }
     }
 
-    var content = duration + 'ms = ' +  durationText;
+    var content = duration + 'ms = ' + durationText;
     console.log(content);
     showDialog(content);
 }
@@ -79,6 +89,7 @@ window.addEventListener('load', function () {
         var selection = getSelected();
         if (selection && numReg.test(selection.selectedText)) {
             var duration = parseInt(selection.selectedText);
+            
             if (!isNaN(duration)) {
                 showTime(selection.selected, duration);
             }
